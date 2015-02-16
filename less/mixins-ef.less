@@ -98,3 +98,16 @@
 .select-background( @y ) {
   background-position: right @y;
 }
+
+// Fallback rbga to rgb for IE<=8
+
+.rgba-fallback(@property, @color) {
+  // for browsers without rgba support, IE8 e.g.
+  @{property}: fade(@color, 100%);
+
+  // for modern browers
+  :not([ie-lte-8]) & {
+    @{property}: @color;
+  }
+}
+
